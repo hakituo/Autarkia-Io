@@ -53,7 +53,8 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -e ".[async]" pytest
       - name: Assert the optional backend is present
-        run: python -c "import aiofiles; print('aiofiles', aiofiles.__version__)"
+        # aiofiles >= 24 dropped ``__version__``; read the installed metadata.
+        run: python -c "import aiofiles; from importlib.metadata import version; print('aiofiles', version('aiofiles'))"
       - name: Test
         run: python -m pytest -q
 
