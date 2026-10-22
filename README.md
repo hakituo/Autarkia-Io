@@ -13,6 +13,7 @@
 <p align="center">
   <a href="https://pypi.org/project/Autarkia-Io/"><img alt="PyPI" src="https://img.shields.io/pypi/v/autarkia-io.svg"></a>
   <a href="https://pypi.org/project/Autarkia-Io/"><img alt="Python" src="https://img.shields.io/pypi/pyversions/autarkia-io.svg"></a>
+  <a href="https://github.com/hakituo/Autarkia-Io/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/hakituo/Autarkia-Io/actions/workflows/ci.yml/badge.svg"></a>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
 </p>
 
