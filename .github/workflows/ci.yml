@@ -24,6 +24,39 @@ jobs:
       - name: Test
         run: python -m pytest -q
 
+  # Half of this library's value is the Windows WinError 5/32 retry path,
+  # which never runs on an Ubuntu runner.
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e . pytest
+      - name: Test (Windows file locks)
+        run: python -m pytest -q
+
+  # The other half: the aiofiles backend is optional, so it needs its own job.
+  async-extra:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install with aiofiles
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[async]" pytest
+      - name: Assert the optional backend is present
+        run: python -c "import aiofiles; print('aiofiles', aiofiles.__version__)"
+      - name: Test
+        run: python -m pytest -q
+
   package:
     runs-on: ubuntu-latest
     steps:
@@ -38,5 +71,9 @@ jobs:
           python -m twine check dist/*
       - name: Install the wheel in a clean dir and import it
         run: |
-          python -m pip install --no-deps --target /tmp/pkg dist/*.whl
-          PYTHONPATH=/tmp/pkg python -c "import autarkia_io as m, pathlib; assert (pathlib.Path(m.__file__).parent / 'py.typed').exists(); print('wheel ok', m.__version__)"
+          python -m pip install --no-deps --target /tmp/wheelpkg dist/*.whl
+          PYTHONPATH=/tmp/wheelpkg python -c "import autarkia_io as m, pathlib; assert (pathlib.Path(m.__file__).parent / 'py.typed').exists(); print('wheel ok', m.__version__)"
+      - name: Install the sdist in a clean dir and import it
+        run: |
+          python -m pip install --no-deps --target /tmp/sdistpkg dist/*.tar.gz
+          PYTHONPATH=/tmp/sdistpkg python -c "import autarkia_io as m, pathlib; assert (pathlib.Path(m.__file__).parent / 'py.typed').exists(); print('sdist ok', m.__version__)"
