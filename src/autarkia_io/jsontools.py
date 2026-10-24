@@ -229,3 +229,11 @@ __all__ = [
     "extract_json_block",
     "extract_json_object",
 ]
+
+
+def is_json_array(text: str) -> bool:
+    """判断文本整体是否为合法 JSON 数组。"""
+    try:
+        return isinstance(json.loads(text), list)
+    except (TypeError, ValueError):
+        return False
