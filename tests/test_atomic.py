@@ -15,6 +15,7 @@ from autarkia_io import (
     async_safe_read_text,
     async_safe_write_text,
     cleanup_stale_temp_files,
+    dump_json_text,
     generate_temp_path,
     retry_replace,
     safe_json_dump,
@@ -26,6 +27,12 @@ from autarkia_io import (
 
 
 class TestText:
+    def test_dump_json_text_keeps_unicode_and_indent(self):
+        text = dump_json_text({"name": "澪", "n": 1})
+        assert '"澪"' in text
+        assert "\n  " in text
+        assert json.loads(text) == {"name": "澪", "n": 1}
+
     def test_round_trip(self, tmp_path):
         target = tmp_path / "a" / "b" / "note.txt"
         safe_write_text("你好\n世界", target)

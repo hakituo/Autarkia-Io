@@ -169,7 +169,7 @@ def _remove_if_exists(path: str) -> None:
         try:
             os.remove(path)
         except Exception:  # noqa: BLE001
-            pass
+            logger.debug("failed to remove temporary file", exc_info=True)
 
 
 def safe_write_text(
@@ -207,6 +207,19 @@ def safe_json_dump(
     """Atomically write pretty JSON (``ensure_ascii=False``)."""
     payload = json.dumps(data, ensure_ascii=False, indent=2)
     _write_text_payload(payload, file_path, encoding, use_fsync)
+
+
+def dump_json_text(data: Any) -> str:
+    """Serialize data to JSON text for persistence (UTF-8, 2-space indent).
+
+    Uses ``json.dumps`` rather than ``json.dump(..., file)``: one call encodes
+    a snapshot of the data at that moment, while ``json.dump`` writes while it
+    iterates and can leave a half-written file. ``json.dumps`` can still fail
+    if the dict is mutated concurrently (``dictionary changed size during
+    iteration``), so call it inside the same lock as the snapshot and only
+    write the file outside the lock.
+    """
+    return json.dumps(data, ensure_ascii=False, indent=2)
 
 
 def safe_json_load(
@@ -284,7 +297,7 @@ async def _async_write_text_payload(
                 try:
                     await aiofiles.os.remove(temp_path)
                 except Exception:  # noqa: BLE001
-                    pass
+                    logger.debug("failed to remove temporary file", exc_info=True)
             raise
     else:
         await asyncio.to_thread(_write_text_payload, text, path, encoding, use_fsync)

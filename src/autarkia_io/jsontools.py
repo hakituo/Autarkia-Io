@@ -8,8 +8,11 @@ the useful object when one exists and decline to guess when it does not.
 from __future__ import annotations
 
 import json
+import logging
 import re
 from typing import Any, Dict, Iterator, Optional, Union
+
+logger = logging.getLogger(__name__)
 
 JsonValue = Union[Dict[str, Any], list]
 
@@ -81,7 +84,7 @@ def unwrap_redundant_brackets(text: str) -> str:
     try:
         json.loads(raw)
     except (json.JSONDecodeError, ValueError):
-        pass
+        logger.debug("wrapped text is not valid JSON yet", exc_info=True)
     else:
         return raw
     unwrapped = re.sub(r"\}\}", "}", re.sub(r"\{\{", "{", raw)).strip()
