@@ -27,7 +27,7 @@
 
 **崩溃安全的写入、Windows 文件占用重试、可选 fsync、sync/async 双套 API，以及从 LLM 输出里抠 JSON。**
 
-来自在单台 Windows 机器上持续持久化状态数月的 [Autarkia](https://qishihao.icu/projects/autarkia) agent 运行时。整个系列见[组件库路线图](https://github.com/hakituo/Autarkia-tool/blob/main/ROADMAP.md)。
+来自在单台 Windows 机器上持续持久化状态数月的 [Autarkia](https://qishihao.dev/projects/autarkia) agent 运行时。整个系列见[组件库路线图](https://github.com/hakituo/Autarkia-tool/blob/main/ROADMAP.md)。
 
 ### 为什么
 
@@ -105,11 +105,11 @@ looks_like_refusal("抱歉，我无法完成这个请求")  # True
 
 ### 系列与链接
 
-- 项目页：<https://qishihao.icu/projects/autarkia>
+- 项目页：<https://qishihao.dev/projects/autarkia>
 - 运行时仓库：<https://github.com/hakituo/Autarkia>
 - 本包：<https://github.com/hakituo/Autarkia-Io>
 - 组件库路线图：<https://github.com/hakituo/Autarkia-tool/blob/main/ROADMAP.md>
-- 作者：Shihao Qi — <https://qishihao.icu>
+- 作者：Shihao Qi — <https://qishihao.dev>
 
 ### 许可
 
@@ -121,7 +121,7 @@ MIT
 
 **Crash-safe writes, Windows lock retries, optional fsync, sync + async APIs, and resilient JSON extraction from LLM output.**
 
-Extracted from the [Autarkia](https://qishihao.icu/projects/autarkia) agent runtime, which has persisted state on a single Windows machine for months. See the [component roadmap](https://github.com/hakituo/Autarkia-tool/blob/main/ROADMAP.md).
+Extracted from the [Autarkia](https://qishihao.dev/projects/autarkia) agent runtime, which has persisted state on a single Windows machine for months. See the [component roadmap](https://github.com/hakituo/Autarkia-tool/blob/main/ROADMAP.md).
 
 ### Why
 
@@ -199,11 +199,11 @@ looks_like_refusal("抱歉，我无法完成这个请求")  # True
 
 ### The bigger picture
 
-- Project page: <https://qishihao.icu/projects/autarkia>
+- Project page: <https://qishihao.dev/projects/autarkia>
 - Runtime repository: <https://github.com/hakituo/Autarkia>
 - This package: <https://github.com/hakituo/Autarkia-Io>
 - Roadmap: <https://github.com/hakituo/Autarkia-tool/blob/main/ROADMAP.md>
-- Author: Shihao Qi — <https://qishihao.icu>
+- Author: Shihao Qi — <https://qishihao.dev>
 
 ### License
 

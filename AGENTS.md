@@ -9,7 +9,7 @@ Autarkia 运行时组件库系列的第 5 个库：原子文件 IO——临时�
 - PyPI：<https://pypi.org/project/Autarkia-Io/>
 - 系列路线图：<https://github.com/hakituo/Autarkia-tool/blob/main/ROADMAP.md>（**先读它**）
 - 主运行时（语义权威源）：本地 `D:\AI\xiaoyou-public`，GitHub <https://github.com/hakituo/Autarkia>
-- 作者站点：<https://qishihao.icu/projects/autarkia>
+- 作者站点：<https://qishihao.dev/projects/autarkia>
 
 ## 了解背景：先看主仓库的哪些文件
 
